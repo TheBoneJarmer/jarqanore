@@ -213,11 +213,6 @@ jstring Java_be_labruyere_arqanore_Window__1getTitle(JNIEnv *env, jobject cls, j
     return convert_java_string(env, ptr->get_title());
 }
 
-jstring Java_be_labruyere_arqanore_Window__1getVersion(JNIEnv *env, jobject cls, jlong window) {
-    auto ptr = (arqanore::Window *) window;
-    return convert_java_string(env, ptr->get_version());
-}
-
 jobject Java_be_labruyere_arqanore_Window__1getClearColor(JNIEnv *env, jobject cls, jlong window) {
     auto ptr = (arqanore::Window *) window;
     auto color = convert_color(env, ptr->get_clear_color());

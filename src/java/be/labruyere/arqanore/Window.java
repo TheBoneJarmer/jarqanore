@@ -76,15 +76,6 @@ public class Window extends Pointer {
         return _getClearColor(address);
     }
 
-    /**
-     * Retrieves the current context's OpenGL version
-     *
-     * @return A string containing the version info
-     */
-    public String getVersion() {
-        return _getVersion(address);
-    }
-
     public double getFps() {
         return _getFps(address);
     }
@@ -323,8 +314,6 @@ public class Window extends Pointer {
     private native String _getTitle(long window);
 
     private native Color _getClearColor(long window);
-
-    private native String _getVersion(long window);
 
     private native double _getFps(long window);
 

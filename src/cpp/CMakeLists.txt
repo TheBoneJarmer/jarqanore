@@ -9,6 +9,8 @@ add_library(jarqanore SHARED
 		jni_utils.h
 		arq_utils.h
 		arq_utils.cpp
+		be_labruyere_arqanore_Arqanore.h
+		be_labruyere_arqanore_Arqanore.cpp
 		be_labruyere_arqanore_Window.cpp
 		be_labruyere_arqanore_Window.h
 		be_labruyere_arqanore_Keyboard.cpp

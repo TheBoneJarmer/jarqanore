@@ -65,14 +65,6 @@ JNIEXPORT jobject JNICALL Java_be_labruyere_arqanore_Window__1getClearColor
 
 /*
  * Class:     be_labruyere_arqanore_Window
- * Method:    _getVersion
- * Signature: (J)Ljava/lang/String;
- */
-JNIEXPORT jstring JNICALL Java_be_labruyere_arqanore_Window__1getVersion
-  (JNIEnv *, jobject, jlong);
-
-/*
- * Class:     be_labruyere_arqanore_Window
  * Method:    _getFps
  * Signature: (J)D
  */

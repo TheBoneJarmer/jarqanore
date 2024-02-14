@@ -14,6 +14,20 @@ import java.util.jar.JarFile;
 public class Arqanore {
     private static File tempDirectory;
     private static File[] tempFiles;
+    
+    /**
+     * Gets the version number from Arqanore
+    */
+    public static int[] getVersion() {
+        return _getVersion();    
+    }
+    
+    /**
+     * Gets the OpenGL version number from your device
+    */
+    public static String getOpenGLVersion() {
+        return _getOpenGLVersion();    
+    }
 
     /**
      * Initializes the Arqanore library.
@@ -132,4 +146,8 @@ public class Arqanore {
             return false;
         }
     }
+    
+    private static native int[] _getVersion();
+    
+    private static native String _getOpenGLVersion();
 }
