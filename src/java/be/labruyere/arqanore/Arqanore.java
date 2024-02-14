@@ -18,7 +18,7 @@ public class Arqanore {
     /**
      * Gets the version number from Arqanore
     */
-    public static String getVersion() {
+    public static int[] getVersion() {
         return _getVersion();    
     }
     
@@ -147,7 +147,7 @@ public class Arqanore {
         }
     }
     
-    private static native String _getVersion();
+    private static native int[] _getVersion();
     
     private static native String _getOpenGLVersion();
 }

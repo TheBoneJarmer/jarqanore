@@ -10,9 +10,9 @@ extern "C" {
 /*
  * Class:     be_labruyere_arqanore_Arqanore
  * Method:    _getVersion
- * Signature: ()Ljava/lang/String;
+ * Signature: ()[I
  */
-JNIEXPORT jstring JNICALL Java_be_labruyere_arqanore_Arqanore__1getVersion
+JNIEXPORT jintArray JNICALL Java_be_labruyere_arqanore_Arqanore__1getVersion
   (JNIEnv *, jclass);
 
 /*
