@@ -4,16 +4,15 @@ JAVAC="$JAVA_HOME/bin/javac"
 JAR="$JAVA_HOME/bin/jar"
 JAVADOC="$JAVA_HOME/bin/javadoc"
 
+echo "Initialize build"
 rm -rf ./out 2> /dev/null
+rm -rf src/cpp/build 2> /dev/null
 mkdir out
 mkdir out/lib
+mkdir src/cpp/build
 
 echo "Generating cmake files"
-cd src/cpp/
-rm -rf ./build 2> /dev/null
-mkdir build
-cd build
-
+cd src/cpp/build
 CMAKE_OUTPUT=$(cmake -S .. -G "MinGW Makefiles" 2>&1)
 CMAKE_OUTPUT_EXITCODE=$?
 
