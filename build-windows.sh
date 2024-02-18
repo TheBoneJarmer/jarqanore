@@ -13,6 +13,7 @@ cd src/cpp/
 rm -rf ./build 2> /dev/null
 mkdir build
 cd build
+
 CMAKE_OUTPUT=$(cmake -S .. -G "MinGW Makefiles" 2>&1)
 CMAKE_OUTPUT_EXITCODE=$?
 
@@ -31,7 +32,7 @@ then
 	echo "$CMAKE_BUILD_OUTPUT"
 	exit $CMAKE_BUILD_OUTPUT_EXITCODE
 fi
-#cp *.dll ../../../out/lib
+cp *.dll ../../../out/lib
 cd ../../..
 
 echo "Compiling java library"
