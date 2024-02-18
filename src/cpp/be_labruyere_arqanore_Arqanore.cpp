@@ -6,7 +6,7 @@
 
 jintArray Java_be_labruyere_arqanore_Arqanore__1getVersion(JNIEnv *env, jclass cls) {
     std::array<int, 3> arr = arqanore::Arqanore::get_version();
-    int arr_raw[]{arr[0], arr[1], arr[2]};
+    const jint arr_raw[]{arr[0], arr[1], arr[2]};
 
     jintArray arr_java = env->NewIntArray(3);
     env->SetIntArrayRegion(arr_java, 0, 3, arr_raw);
