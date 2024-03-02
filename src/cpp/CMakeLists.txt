@@ -61,24 +61,12 @@ add_library(jarqanore SHARED
 		be_labruyere_arqanore_Model.h
 		be_labruyere_arqanore_Scene.cpp
 		be_labruyere_arqanore_Scene.h
-		be_labruyere_arqanore_BoxCollider.cpp
-		be_labruyere_arqanore_BoxCollider.h
-		be_labruyere_arqanore_CollisionBody.cpp
-		be_labruyere_arqanore_CollisionBody.h
-		be_labruyere_arqanore_ConcaveCollider.cpp
-		be_labruyere_arqanore_ConcaveCollider.h
-		be_labruyere_arqanore_SphereCollider.cpp
-		be_labruyere_arqanore_SphereCollider.h
-		be_labruyere_arqanore_RigidBody.cpp
-		be_labruyere_arqanore_RigidBody.h
 		be_labruyere_arqanore_Matrix3.cpp
 		be_labruyere_arqanore_Matrix3.h
 		be_labruyere_arqanore_Matrix4.cpp
 		be_labruyere_arqanore_Matrix4.h
 		be_labruyere_arqanore_Quaternion.cpp
-		be_labruyere_arqanore_Quaternion.h
-		be_labruyere_arqanore_Physics.cpp
-		be_labruyere_arqanore_Physics.h)
+		be_labruyere_arqanore_Quaternion.h)
 
 if (DEFINED ENV{JAVA_HOME})
 	set(JAVA_HOME $ENV{JAVA_HOME})
@@ -95,5 +83,5 @@ if (WIN32)
 	target_link_directories(jarqanore PRIVATE C:/Lib)
 	target_include_directories(jarqanore PRIVATE ${JAVA_HOME}/include)
 	target_include_directories(jarqanore PRIVATE ${JAVA_HOME}/include/win32)
-	target_link_libraries(jarqanore PRIVATE glfw3 freetype soloudw reactphysics3d arqanore -Wl,-rpath='$ORIGIN:$ORIGIN/lib')
+	target_link_libraries(jarqanore PRIVATE glfw3 freetype soloudw arqanore -Wl,-rpath='$ORIGIN:$ORIGIN/lib')
 endif (WIN32)
