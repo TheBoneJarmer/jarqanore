@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     be_labruyere_arqanore_Renderer
+ * Method:    _totalParagraphRows
+ * Signature: (JLjava/lang/String;F)I
+ */
+JNIEXPORT jint JNICALL Java_be_labruyere_arqanore_Renderer__1totalParagraphRows
+  (JNIEnv *, jclass, jlong, jstring, jfloat);
+
+/*
+ * Class:     be_labruyere_arqanore_Renderer
  * Method:    _generateModelMatrix
  * Signature: (Lbe/labruyere/arqanore/Vector3;Lbe/labruyere/arqanore/Quaternion;Lbe/labruyere/arqanore/Vector3;)Lbe/labruyere/arqanore/Matrix4;
  */

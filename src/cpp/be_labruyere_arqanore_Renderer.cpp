@@ -6,6 +6,11 @@
 #include "arqanore/exceptions.h"
 #include "arq_utils.h"
 
+jint Java_be_labruyere_arqanore_Renderer__1totalParagraphRows(JNIEnv *env, jclass cls, jlong font, jstring text, jfloat width) {
+    auto ptr = (arqanore::Font *) font;
+    return arqanore::Renderer::total_paragraph_rows(ptr, convert_java_string(env, text), width);
+}
+
 jobject Java_be_labruyere_arqanore_Renderer__1generateModelMatrix(JNIEnv *env, jclass cls, jobject obj_pos, jobject obj_rot, jobject obj_scl) {
     auto pos = convert_vector3(env, obj_pos);
     auto rot = convert_quaternion(env, obj_rot);

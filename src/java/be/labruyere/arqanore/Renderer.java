@@ -13,8 +13,12 @@ public class Renderer {
         Arqanore.init();
     }
 
+    public static int totalParagraphRows(Font font, String text, float width) {
+        return _totalParagraphRows(font.address, text, width);
+    }
+
     public static Matrix4 generateModelMatrix(Vector3 pos, Quaternion rot, Vector3 scl) {
-        return _generateModelMatrix(pos,rot,scl);
+        return _generateModelMatrix(pos, rot, scl);
     }
 
     public static Matrix4 generateViewMatrix(Camera camera) {
@@ -157,9 +161,12 @@ public class Renderer {
         renderModel(window, model, pos, rot, scl, frame);
     }
 
+    private static native int _totalParagraphRows(long font, String text, float width);
+
     private static native Matrix4 _generateModelMatrix(Vector3 pos, Quaternion rot, Vector3 scl);
 
     private static native Matrix4 _generateViewMatrix(long camera);
+
     private static native Matrix4 _generateProjectionMatrix(long camera, long window);
 
     private static native void _setShader(long shader, int target);
