@@ -90,9 +90,6 @@ void window_update_cb(arqanore::Window *window, double at) {
 void window_opengl_cb(arqanore::Window* window, std::string type, std::string severity, std::string message) {
     auto cb = window_opengl_cb_data;
 
-    std::cout << type << " " << severity << " " << message << std::endl;
-    std::cout << "cb is null: " << (cb == nullptr) << std::endl;
-
     if (cb == nullptr || cb->is_empty()) {
         return;
     }
