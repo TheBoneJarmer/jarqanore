@@ -45,6 +45,16 @@ void Java_be_labruyere_arqanore_Renderer__1setShader(JNIEnv *env, jclass cls, jl
     }
 }
 
+void Java_be_labruyere_arqanore_Renderer__1switchShader(JNIEnv *env, jclass cls, jlong shader) {
+    auto ptr = (arqanore::Shader *) shader;
+
+    try {
+        arqanore::Renderer::switch_shader(ptr);
+    } catch (arqanore::ArqanoreException &ex) {
+        throw_java_exception(env, ex.what());
+    }
+}
+
 void Java_be_labruyere_arqanore_Renderer__1renderText(JNIEnv *env, jclass cls, jlong window, jlong font, jstring text, jobject obj_pos, jobject obj_color) {
     auto ptr_window = (arqanore::Window *) window;
     auto ptr_font = (arqanore::Font *) font;

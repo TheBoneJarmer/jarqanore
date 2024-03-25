@@ -40,6 +40,10 @@ public class Renderer {
         var targetValue = EnumUtils.convertShaderTarget(target);
         _setShader(shader.address, targetValue);
     }
+    
+    public static void switchShader(Shader shader) throws ArqanoreException {
+        _switchShader(shader.address);
+    }
 
     /**
      * Renders a sprite on the screen
@@ -170,6 +174,8 @@ public class Renderer {
     private static native Matrix4 _generateProjectionMatrix(long camera, long window);
 
     private static native void _setShader(long shader, int target);
+    
+    private static native void _switchShader(long shader);
 
     private static native void _renderText(long window, long font, String text, Vector2 position, Color color);
 

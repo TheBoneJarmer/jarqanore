@@ -49,6 +49,14 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1setShader
 
 /*
  * Class:     be_labruyere_arqanore_Renderer
+ * Method:    _switchShader
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1switchShader
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Renderer
  * Method:    _renderText
  * Signature: (JJLjava/lang/String;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Color;)V
  */
