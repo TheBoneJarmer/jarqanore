@@ -68,7 +68,7 @@ public class Window extends Pointer {
     /**
      * A huge difference compared to other getters because the method arqanore::Window::get_clear_color() is used in the c++ part of JArqanore
      * And since c++ methods return copies instead of the reference itself, the copy would have been cleaned up once it leaves the scope.
-     * Therefore a new pointer is created based on the return value from the method.
+     * Therefore, a new pointer is created based on the return value from the method.
      *
      * @return Color
      */
