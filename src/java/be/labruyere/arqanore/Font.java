@@ -40,13 +40,13 @@ public class Font extends Pointer {
      * @param text The text
      * @return The width of the text in pixels
      */
-    public float measure(String text) {
-        return _measure(address, text);
+    public float measure(String text, float scale) {
+        return _measure(address, text, scale);
     }
 
     private native long _create(String path, int width, int height);
 
     private native void _destroy(long font);
 
-    private native float _measure(long font, String text);
+    private native float _measure(long font, String text, float scale);
 }

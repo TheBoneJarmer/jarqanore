@@ -13,7 +13,7 @@ public class Renderer {
         Arqanore.init();
     }
 
-    public static int totalParagraphRows(Font font, String text, float width) {
+    public static int totalParagraphRows(Font font, String text, Vector2 scale, float width) {
         return _totalParagraphRows(font.address, text, width);
     }
 
@@ -40,7 +40,7 @@ public class Renderer {
         var targetValue = EnumUtils.convertShaderTarget(target);
         _setShader(shader.address, targetValue);
     }
-    
+
     public static void switchShader(Shader shader) throws ArqanoreException {
         _switchShader(shader.address);
     }
@@ -85,32 +85,34 @@ public class Renderer {
      * @param position The position of the text in pixels
      * @param color    The text's color
      */
-    public static void renderText(Window window, Font font, String text, Vector2 position, Color color) throws ArqanoreException {
+    public static void renderText(Window window, Font font, String text, Vector2 position, Vector2 scale, Color color) throws ArqanoreException {
         var winPtr = window.address;
         var fontPtr = font.address;
 
-        _renderText(winPtr, fontPtr, text, position, color);
+        _renderText(winPtr, fontPtr, text, position, scale, color);
     }
 
-    public static void renderText(Window window, Font font, String text, float x, float y, int r, int g, int b, int a) throws ArqanoreException {
+    public static void renderText(Window window, Font font, String text, float x, float y, float scaleX, float scaleY, int r, int g, int b, int a) throws ArqanoreException {
         var position = new Vector2(x, y);
         var color = new Color(r, g, b, a);
+        var scale = new Vector2(scaleX, scaleY);
 
-        renderText(window, font, text, position, color);
+        renderText(window, font, text, position, scale, color);
     }
 
-    public static void renderParagraph(Window window, Font font, String text, Vector2 position, float width, Color color) throws ArqanoreException {
+    public static void renderParagraph(Window window, Font font, String text, Vector2 position, Vector2 scale, int spacing, float width, Color color) throws ArqanoreException {
         var winPtr = window.address;
         var fontPtr = font.address;
 
-        _renderParagraph(winPtr, fontPtr, text, position, width, color);
+        _renderParagraph(winPtr, fontPtr, text, position, scale, spacing, width, color);
     }
 
-    public static void renderParagraph(Window window, Font font, String text, float x, float y, float width, int r, int g, int b, int a) throws ArqanoreException {
+    public static void renderParagraph(Window window, Font font, String text, float x, float y, float scaleX, float scaleY, int spacing, float width, int r, int g, int b, int a) throws ArqanoreException {
         var position = new Vector2(x, y);
         var color = new Color(r, g, b, a);
+        var scale = new Vector2(scaleX, scaleY);
 
-        renderParagraph(window, font, text, position, width, color);
+        renderParagraph(window, font, text, position, scale, spacing, width, color);
     }
 
     /**
@@ -174,12 +176,12 @@ public class Renderer {
     private static native Matrix4 _generateProjectionMatrix(long camera, long window);
 
     private static native void _setShader(long shader, int target);
-    
+
     private static native void _switchShader(long shader);
 
-    private static native void _renderText(long window, long font, String text, Vector2 position, Color color);
+    private static native void _renderText(long window, long font, String text, Vector2 position, Vector2 scale, Color color);
 
-    private static native void _renderParagraph(long window, long font, String text, Vector2 position, float width, Color color);
+    private static native void _renderParagraph(long window, long font, String text, Vector2 position, Vector2 scale, int spacing, float width, Color color);
 
     private static native void _renderPolygon(long window, long polygon, long texture, Vector2 position, Vector2 scale, Vector2 origin, Vector2 offset, float angle, boolean flipHor, boolean flipVert, Color color);
 
