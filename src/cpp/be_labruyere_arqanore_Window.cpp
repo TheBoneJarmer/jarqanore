@@ -1,6 +1,9 @@
 #include <arqanore/window.h>
 #include <iostream>
 #include "be_labruyere_arqanore_Window.h"
+
+#include <arqanore/arqanore.h>
+
 #include "jni_utils.h"
 #include "arqanore/exceptions.h"
 #include "arq_utils.h"

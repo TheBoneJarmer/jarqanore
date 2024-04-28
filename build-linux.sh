@@ -1,8 +1,8 @@
 #!/bin/bash
 
-JAVAC="$JDK_HOME/bin/javac"
-JAR="$JDK_HOME/bin/jar"
-JAVADOC="$JDK_HOME/bin/javadoc"
+JAVAC="$JAVA_HOME/bin/javac"
+JAR="$JAVA_HOME/bin/jar"
+JAVADOC="$JAVA_HOME/bin/javadoc"
 
 rm -rf ./out 2> /dev/null
 mkdir out
