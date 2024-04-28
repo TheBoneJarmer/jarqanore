@@ -14,7 +14,7 @@ public class Renderer {
     }
 
     public static int totalParagraphRows(Font font, String text, Vector2 scale, float width) {
-        return _totalParagraphRows(font.address, text, width);
+        return _totalParagraphRows(font.address, text, scale, width);
     }
 
     public static Matrix4 generateModelMatrix(Vector3 pos, Quaternion rot, Vector3 scl) {
@@ -167,7 +167,7 @@ public class Renderer {
         renderModel(window, model, pos, rot, scl, frame);
     }
 
-    private static native int _totalParagraphRows(long font, String text, float width);
+    private static native int _totalParagraphRows(long font, String text, Vector2 scale, float width);
 
     private static native Matrix4 _generateModelMatrix(Vector3 pos, Quaternion rot, Vector3 scl);
 

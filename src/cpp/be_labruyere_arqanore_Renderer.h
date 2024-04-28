@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     be_labruyere_arqanore_Renderer
  * Method:    _totalParagraphRows
- * Signature: (JLjava/lang/String;F)I
+ * Signature: (JLjava/lang/String;Lbe/labruyere/arqanore/Vector2;F)I
  */
 JNIEXPORT jint JNICALL Java_be_labruyere_arqanore_Renderer__1totalParagraphRows
-  (JNIEnv *, jclass, jlong, jstring, jfloat);
+  (JNIEnv *, jclass, jlong, jstring, jobject, jfloat);
 
 /*
  * Class:     be_labruyere_arqanore_Renderer
