@@ -58,18 +58,18 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1switchShader
 /*
  * Class:     be_labruyere_arqanore_Renderer
  * Method:    _renderText
- * Signature: (JJLjava/lang/String;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Color;)V
+ * Signature: (JJLjava/lang/String;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Color;)V
  */
 JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1renderText
-  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jobject);
+  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jobject, jobject);
 
 /*
  * Class:     be_labruyere_arqanore_Renderer
  * Method:    _renderParagraph
- * Signature: (JJLjava/lang/String;Lbe/labruyere/arqanore/Vector2;FLbe/labruyere/arqanore/Color;)V
+ * Signature: (JJLjava/lang/String;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Vector2;IFLbe/labruyere/arqanore/Color;)V
  */
 JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1renderParagraph
-  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jfloat, jobject);
+  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jobject, jint, jfloat, jobject);
 
 /*
  * Class:     be_labruyere_arqanore_Renderer

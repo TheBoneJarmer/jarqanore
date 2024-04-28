@@ -26,10 +26,10 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Font__1destroy
 /*
  * Class:     be_labruyere_arqanore_Font
  * Method:    _measure
- * Signature: (JLjava/lang/String;)F
+ * Signature: (JLjava/lang/String;F)F
  */
 JNIEXPORT jfloat JNICALL Java_be_labruyere_arqanore_Font__1measure
-  (JNIEnv *, jobject, jlong, jstring);
+  (JNIEnv *, jobject, jlong, jstring, jfloat);
 
 #ifdef __cplusplus
 }
