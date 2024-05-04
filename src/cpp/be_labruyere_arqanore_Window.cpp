@@ -90,7 +90,7 @@ void window_update_cb(arqanore::Window *window, double at) {
     }
 }
 
-void window_opengl_cb(arqanore::Window* window, std::string type, std::string severity, std::string message) {
+void window_opengl_cb(arqanore::Window *window, std::string type, std::string severity, std::string message) {
     auto cb = window_opengl_cb_data;
 
     if (cb == nullptr || cb->is_empty()) {
@@ -225,6 +225,11 @@ jdouble Java_be_labruyere_arqanore_Window__1getFps(JNIEnv *env, jobject cls, jlo
     return ptr->get_fps();
 }
 
+jboolean Java_be_labruyere_arqanore_Window__1isClosed(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    return ptr->is_closed();
+}
+
 void Java_be_labruyere_arqanore_Window__1setWidth(JNIEnv *env, jobject cls, jlong window, jint value) {
     auto ptr = (arqanore::Window *) window;
     ptr->set_width(value);
@@ -260,6 +265,11 @@ void Java_be_labruyere_arqanore_Window__1setClearColor(JNIEnv *env, jobject cls,
     auto clr = convert_color(env, color);
 
     ptr->set_clear_color(clr);
+}
+
+void Java_be_labruyere_arqanore_Window__1setClosed(JNIEnv *env, jobject cls, jlong window, jboolean value) {
+    auto ptr = (arqanore::Window *) window;
+    ptr->set_closed(value);
 }
 
 void Java_be_labruyere_arqanore_Window__1setOpenCallback(JNIEnv *env, jobject cls, jlong window, jstring class_name, jstring method_name) {

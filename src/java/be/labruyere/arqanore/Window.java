@@ -148,6 +148,14 @@ public class Window extends Pointer {
         _setClearColor(address, color);
     }
 
+    public boolean isClosed() {
+        return _isClosed(address);
+    }
+
+    public void setClosed(boolean value) {
+        _setClosed(address, value);
+    }
+
     /**
      * Public constructor
      *
@@ -317,6 +325,8 @@ public class Window extends Pointer {
 
     private native double _getFps(long window);
 
+    private native boolean _isClosed(long window);
+
     private native void _setWidth(long window, int value);
 
     private native void _setHeight(long window, int value);
@@ -328,6 +338,8 @@ public class Window extends Pointer {
     private native void _setVSync(long window, boolean value);
 
     private native void _setTitle(long window, String title);
+
+    private native void _setClosed(long window, boolean value);
 
     private native void _setClearColor(long window, Color color);
 

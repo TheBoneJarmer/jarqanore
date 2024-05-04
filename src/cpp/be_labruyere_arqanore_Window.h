@@ -73,6 +73,14 @@ JNIEXPORT jdouble JNICALL Java_be_labruyere_arqanore_Window__1getFps
 
 /*
  * Class:     be_labruyere_arqanore_Window
+ * Method:    _isClosed
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_be_labruyere_arqanore_Window__1isClosed
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
  * Method:    _setWidth
  * Signature: (JI)V
  */
@@ -118,6 +126,14 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1setVSync
  */
 JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1setTitle
   (JNIEnv *, jobject, jlong, jstring);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
+ * Method:    _setClosed
+ * Signature: (JZ)V
+ */
+JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1setClosed
+  (JNIEnv *, jobject, jlong, jboolean);
 
 /*
  * Class:     be_labruyere_arqanore_Window
