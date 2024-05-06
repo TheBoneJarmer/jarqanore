@@ -58,7 +58,7 @@ cd ../..
 
 echo "Generating jar"
 cd out
-cp C:/Lib/*.dll ./lib/
+cp C:/Lib/*.dll .
 JAR_OUTPUT=$($JAR -cf jarqanore.jar ./be/ ./lib/ 2>&1)
 JAR_OUTPUT_EXITCODE=$?
 
