@@ -100,19 +100,19 @@ public class Renderer {
         renderText(window, font, text, position, scale, color);
     }
 
-    public static void renderParagraph(Window window, Font font, String text, Vector2 position, Vector2 scale, int spacing, float width, Color color) throws ArqanoreException {
+    public static void renderParagraph(Window window, Font font, String text, Vector2 position, Vector2 scale, Color color, int spacing, float maxWidth, int maxLines) throws ArqanoreException {
         var winPtr = window.address;
         var fontPtr = font.address;
 
-        _renderParagraph(winPtr, fontPtr, text, position, scale, spacing, width, color);
+        _renderParagraph(winPtr, fontPtr, text, position, scale, color, spacing, maxWidth, maxLines);
     }
 
-    public static void renderParagraph(Window window, Font font, String text, float x, float y, float scaleX, float scaleY, int spacing, float width, int r, int g, int b, int a) throws ArqanoreException {
+    public static void renderParagraph(Window window, Font font, String text, float x, float y, float scaleX, float scaleY, int r, int g, int b, int a, int spacing, float maxWidth, int maxLines) throws ArqanoreException {
         var position = new Vector2(x, y);
         var color = new Color(r, g, b, a);
         var scale = new Vector2(scaleX, scaleY);
 
-        renderParagraph(window, font, text, position, scale, spacing, width, color);
+        renderParagraph(window, font, text, position, scale, color, spacing, maxWidth, maxLines);
     }
 
     /**
@@ -181,7 +181,7 @@ public class Renderer {
 
     private static native void _renderText(long window, long font, String text, Vector2 position, Vector2 scale, Color color);
 
-    private static native void _renderParagraph(long window, long font, String text, Vector2 position, Vector2 scale, int spacing, float width, Color color);
+    private static native void _renderParagraph(long window, long font, String text, Vector2 position, Vector2 scale, Color color, int spacing, float maxWidth, int maxLines);
 
     private static native void _renderPolygon(long window, long polygon, long texture, Vector2 position, Vector2 scale, Vector2 origin, Vector2 offset, float angle, boolean flipHor, boolean flipVert, Color color);
 

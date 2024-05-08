@@ -71,7 +71,7 @@ void Java_be_labruyere_arqanore_Renderer__1renderText(JNIEnv *env, jclass cls, j
     }
 }
 
-void Java_be_labruyere_arqanore_Renderer__1renderParagraph(JNIEnv *env, jclass cls, jlong window, jlong font, jstring text, jobject obj_pos, jobject obj_scale, jint spacing, jfloat width, jobject obj_color) {
+void Java_be_labruyere_arqanore_Renderer__1renderParagraph(JNIEnv *env, jclass cls, jlong window, jlong font, jstring text, jobject obj_pos, jobject obj_scale, jobject obj_color, jint spacing, jfloat max_width, jint max_lines) {
     auto ptr_window = (arqanore::Window *) window;
     auto ptr_font = (arqanore::Font *) font;
     auto pos = convert_vector2(env, obj_pos);
@@ -79,7 +79,7 @@ void Java_be_labruyere_arqanore_Renderer__1renderParagraph(JNIEnv *env, jclass c
     auto scale = convert_vector2(env, obj_scale);
 
     try {
-        arqanore::Renderer::render_paragraph(ptr_window, ptr_font, convert_java_string(env, text), pos, scale, spacing, width, color);
+        arqanore::Renderer::render_paragraph(ptr_window, ptr_font, convert_java_string(env, text), pos, scale, color, spacing, max_width, max_lines);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }

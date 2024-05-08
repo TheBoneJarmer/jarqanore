@@ -66,10 +66,10 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1renderText
 /*
  * Class:     be_labruyere_arqanore_Renderer
  * Method:    _renderParagraph
- * Signature: (JJLjava/lang/String;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Vector2;IFLbe/labruyere/arqanore/Color;)V
+ * Signature: (JJLjava/lang/String;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Color;IFI)V
  */
 JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1renderParagraph
-  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jobject, jint, jfloat, jobject);
+  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jobject, jobject, jint, jfloat, jint);
 
 /*
  * Class:     be_labruyere_arqanore_Renderer
