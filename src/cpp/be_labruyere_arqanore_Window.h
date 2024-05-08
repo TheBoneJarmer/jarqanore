@@ -81,6 +81,30 @@ JNIEXPORT jboolean JNICALL Java_be_labruyere_arqanore_Window__1isClosed
 
 /*
  * Class:     be_labruyere_arqanore_Window
+ * Method:    _isMinimized
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_be_labruyere_arqanore_Window__1isMinimized
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
+ * Method:    _isMaximized
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_be_labruyere_arqanore_Window__1isMaximized
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
+ * Method:    _isVisible
+ * Signature: (J)Z
+ */
+JNIEXPORT jboolean JNICALL Java_be_labruyere_arqanore_Window__1isVisible
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
  * Method:    _setWidth
  * Signature: (JI)V
  */
@@ -242,10 +266,10 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1destroy
 /*
  * Class:     be_labruyere_arqanore_Window
  * Method:    _open
- * Signature: (JZZ)V
+ * Signature: (JZZZ)V
  */
 JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1open
-  (JNIEnv *, jobject, jlong, jboolean, jboolean);
+  (JNIEnv *, jobject, jlong, jboolean, jboolean, jboolean);
 
 /*
  * Class:     be_labruyere_arqanore_Window
@@ -253,6 +277,46 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1open
  * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1close
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
+ * Method:    _minimize
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1minimize
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
+ * Method:    _maximize
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1maximize
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
+ * Method:    _restore
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1restore
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
+ * Method:    _show
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1show
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     be_labruyere_arqanore_Window
+ * Method:    _hide
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1hide
   (JNIEnv *, jobject, jlong);
 
 #ifdef __cplusplus

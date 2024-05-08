@@ -230,6 +230,21 @@ jboolean Java_be_labruyere_arqanore_Window__1isClosed(JNIEnv *env, jobject cls, 
     return ptr->is_closed();
 }
 
+jboolean Java_be_labruyere_arqanore_Window__1isMinimized(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    return ptr->is_minimized();
+}
+
+jboolean Java_be_labruyere_arqanore_Window__1isMaximized(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    return ptr->is_maximized();
+}
+
+jboolean Java_be_labruyere_arqanore_Window__1isVisible(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    return ptr->is_visible();
+}
+
 void Java_be_labruyere_arqanore_Window__1setWidth(JNIEnv *env, jobject cls, jlong window, jint value) {
     auto ptr = (arqanore::Window *) window;
     ptr->set_width(value);
@@ -346,11 +361,11 @@ void Java_be_labruyere_arqanore_Window__1destroy(JNIEnv *env, jobject cls, jlong
     delete window_char_cb_data;
 }
 
-void Java_be_labruyere_arqanore_Window__1open(JNIEnv *env, jobject cls, jlong window, jboolean fullscreen, jboolean resizable) {
+void Java_be_labruyere_arqanore_Window__1open(JNIEnv *env, jobject cls, jlong window, jboolean fullscreen, jboolean maximized, jboolean resizable) {
     auto ptr = (arqanore::Window *) window;
 
     try {
-        ptr->open(fullscreen, resizable);
+        ptr->open(fullscreen, maximized, resizable);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     } catch (arqanore::GlfwException &ex) {
@@ -365,4 +380,29 @@ void Java_be_labruyere_arqanore_Window__1open(JNIEnv *env, jobject cls, jlong wi
 void Java_be_labruyere_arqanore_Window__1close(JNIEnv *env, jobject cls, jlong window) {
     auto ptr = (arqanore::Window *) window;
     ptr->close();
+}
+
+void Java_be_labruyere_arqanore_Window__1minimize(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    ptr->minimize();
+}
+
+void Java_be_labruyere_arqanore_Window__1maximize(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    ptr->maximize();
+}
+
+void Java_be_labruyere_arqanore_Window__1restore(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    ptr->restore();
+}
+
+void Java_be_labruyere_arqanore_Window__1show(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    ptr->show();
+}
+
+void Java_be_labruyere_arqanore_Window__1hide(JNIEnv *env, jobject cls, jlong window) {
+    auto ptr = (arqanore::Window *) window;
+    ptr->hide();
 }

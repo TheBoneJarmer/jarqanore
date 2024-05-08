@@ -156,6 +156,18 @@ public class Window extends Pointer {
         _setClosed(address, value);
     }
 
+    public boolean isMinimized() {
+        return _isMinimized(address);
+    }
+
+    public boolean isMaximized() {
+        return _isMaximized(address);
+    }
+
+    public boolean isVisible() {
+        return _isVisible(address);
+    }
+
     /**
      * Public constructor
      *
@@ -188,8 +200,8 @@ public class Window extends Pointer {
      * @param fullscreen If true, the window will be fullscreen
      * @param resizable  If true, the user can resize the window and the maximize and minimize buttons are enabled
      */
-    public void open(boolean fullscreen, boolean resizable) throws ArqanoreException {
-        _open(address, fullscreen, resizable);
+    public void open(boolean fullscreen, boolean maximized, boolean resizable) throws ArqanoreException {
+        _open(address, fullscreen, maximized, resizable);
     }
 
     /**
@@ -199,12 +211,28 @@ public class Window extends Pointer {
         _close(address);
     }
 
+    public void minimize() {
+        _minimize(address);
+    }
+
+    public void maximize() {
+        _maximize(address);
+    }
+
+    public void show() {
+        _show(address);
+    }
+
+    public void hide() {
+        _hide(address);
+    }
+
     /**
      * Sets the onOpen callback
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onOpen(String className, String methodName) throws ArqanoreException {
         _setOpenCallback(address, className, methodName);
@@ -215,7 +243,7 @@ public class Window extends Pointer {
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onClose(String className, String methodName) throws ArqanoreException {
         _setCloseCallback(address, className, methodName);
@@ -226,7 +254,7 @@ public class Window extends Pointer {
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onTick(String className, String methodName) throws ArqanoreException {
         _setTickCallback(address, className, methodName);
@@ -237,7 +265,7 @@ public class Window extends Pointer {
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onUpdate(String className, String methodName) throws ArqanoreException {
         _setUpdateCallback(address, className, methodName);
@@ -248,7 +276,7 @@ public class Window extends Pointer {
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onRender2D(String className, String methodName) throws ArqanoreException {
         _setRender2DCallback(address, className, methodName);
@@ -259,7 +287,7 @@ public class Window extends Pointer {
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onRender3D(String className, String methodName) throws ArqanoreException {
         _setRender3DCallback(address, className, methodName);
@@ -270,7 +298,7 @@ public class Window extends Pointer {
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onResize(String className, String methodName) throws ArqanoreException {
         _setResizeCallback(address, className, methodName);
@@ -281,7 +309,7 @@ public class Window extends Pointer {
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onPosition(String className, String methodName) throws ArqanoreException {
         _setPositionCallback(address, className, methodName);
@@ -292,7 +320,7 @@ public class Window extends Pointer {
      *
      * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
-     @throws ArqanoreException If callback did not register correctly
+     * @throws ArqanoreException If callback did not register correctly
      */
     public void onChar(String className, String methodName) throws ArqanoreException {
         _setCharCallback(address, className, methodName);
@@ -301,7 +329,7 @@ public class Window extends Pointer {
     /**
      * Sets the onOpenGL callback
      *
-     * @param className The fully qualified name of the class
+     * @param className  The fully qualified name of the class
      * @param methodName The method name from the class
      * @throws ArqanoreException If callback did not register correctly
      */
@@ -326,6 +354,12 @@ public class Window extends Pointer {
     private native double _getFps(long window);
 
     private native boolean _isClosed(long window);
+
+    private native boolean _isMinimized(long window);
+
+    private native boolean _isMaximized(long window);
+
+    private native boolean _isVisible(long window);
 
     private native void _setWidth(long window, int value);
 
@@ -367,7 +401,17 @@ public class Window extends Pointer {
 
     private native void _destroy(long window);
 
-    private native void _open(long window, boolean fullscreen, boolean resizable);
+    private native void _open(long window, boolean fullscreen, boolean maximized, boolean resizable);
 
     private native void _close(long window);
+
+    private native void _minimize(long window);
+
+    private native void _maximize(long window);
+
+    private native void _restore(long window);
+
+    private native void _show(long window);
+
+    private native void _hide(long window);
 }
