@@ -50,7 +50,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform1i(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_1i(convert_java_string(env, name), i);
+        ptr->set_uniform_1i(convert_java_string(env, name), (int) i);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -60,7 +60,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform2i(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_2i(convert_java_string(env, name), i1, i2);
+        ptr->set_uniform_2i(convert_java_string(env, name), (int) i1, (int) i2);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -70,7 +70,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform3i(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_3i(convert_java_string(env, name), i1, i2, i3);
+        ptr->set_uniform_3i(convert_java_string(env, name), (int) i1, (int) i2, (int) i3);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -80,7 +80,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform4i(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_4i(convert_java_string(env, name), i1, i2, i3, i4);
+        ptr->set_uniform_4i(convert_java_string(env, name), (int) i1, (int) i2, (int) i3, (int) i4);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -90,7 +90,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform1f(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_1f(convert_java_string(env, name), f);
+        ptr->set_uniform_1f(convert_java_string(env, name), (float) f);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -100,7 +100,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform2f(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_2f(convert_java_string(env, name), f1, f2);
+        ptr->set_uniform_2f(convert_java_string(env, name), (float) f1, (float) f2);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -110,7 +110,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform3f(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_3f(convert_java_string(env, name), f1, f2, f3);
+        ptr->set_uniform_3f(convert_java_string(env, name), (float) f1, (float) f2, (float) f3);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -120,7 +120,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform4f(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_4f(convert_java_string(env, name), f1, f2, f3, f4);
+        ptr->set_uniform_4f(convert_java_string(env, name), (float) f1, (float) f2, (float) f3, (float) f4);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -130,7 +130,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform1d(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_1d(convert_java_string(env, name), d);
+        ptr->set_uniform_1d(convert_java_string(env, name), (double) d);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -140,7 +140,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform2d(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_2d(convert_java_string(env, name), d1, d2);
+        ptr->set_uniform_2d(convert_java_string(env, name), (double) d1, (double) d2);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -150,7 +150,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform3d(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_3d(convert_java_string(env, name), d1, d2, d3);
+        ptr->set_uniform_3d(convert_java_string(env, name), (double) d1, (double) d2, (double) d3);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
@@ -160,7 +160,7 @@ void Java_be_labruyere_arqanore_Shader__1setUniform4d(JNIEnv *env, jobject cls, 
     auto ptr = (arqanore::Shader *) shader;
 
     try {
-        ptr->set_uniform_4d(convert_java_string(env, name), d1, d2, d3, d4);
+        ptr->set_uniform_4d(convert_java_string(env, name), (double) d1, (double) d2, (double) d3, (double) d4);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }
