@@ -16,11 +16,27 @@ jstring convert_java_string(JNIEnv *env, std::string src) {
     return env->NewStringUTF(cstr);
 }
 
+std::u16string convert_java_u16string(JNIEnv *env, jstring src) {
+    if (src == nullptr) {
+        return nullptr;
+    }
+
+    const jchar* chars = env->GetStringChars(src, nullptr);
+    jsize chars_length = env->GetStringLength(src);
+    std::u16string result;
+
+    for (int i=0; i<chars_length; i++) {
+        result += chars[i];
+    }
+
+    return result;
+}
+
 jfloatArray convert_java_float_array(JNIEnv *env, std::vector<float> &v) {
     float arr_elements[v.size()];
-    int arr_length = (int)v.size();
+    int arr_length = (int) v.size();
 
-    for (int i=0; i<arr_length; i++) {
+    for (int i = 0; i < arr_length; i++) {
         arr_elements[i] = v[i];
     }
 

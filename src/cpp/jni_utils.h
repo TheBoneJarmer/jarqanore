@@ -23,6 +23,8 @@ struct JavaCallback {
 
 const char *convert_java_string(JNIEnv *env, jstring src);
 
+std::u16string convert_java_u16string(JNIEnv *env, jstring src);
+
 jstring convert_java_string(JNIEnv *env, std::string src);
 
 jfloatArray convert_java_float_array(JNIEnv *env, float *arr, jsize length);

@@ -9,14 +9,6 @@ extern "C" {
 #endif
 /*
  * Class:     be_labruyere_arqanore_Renderer
- * Method:    _totalParagraphRows
- * Signature: (JLjava/lang/String;Lbe/labruyere/arqanore/Vector2;F)I
- */
-JNIEXPORT jint JNICALL Java_be_labruyere_arqanore_Renderer__1totalParagraphRows
-  (JNIEnv *, jclass, jlong, jstring, jobject, jfloat);
-
-/*
- * Class:     be_labruyere_arqanore_Renderer
  * Method:    _generateModelMatrix
  * Signature: (Lbe/labruyere/arqanore/Vector3;Lbe/labruyere/arqanore/Quaternion;Lbe/labruyere/arqanore/Vector3;)Lbe/labruyere/arqanore/Matrix4;
  */
@@ -62,14 +54,6 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1switchShader
  */
 JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1renderText
   (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jobject, jobject);
-
-/*
- * Class:     be_labruyere_arqanore_Renderer
- * Method:    _renderParagraph
- * Signature: (JJLjava/lang/String;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Vector2;Lbe/labruyere/arqanore/Color;IFI)V
- */
-JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Renderer__1renderParagraph
-  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jobject, jobject, jint, jfloat, jint);
 
 /*
  * Class:     be_labruyere_arqanore_Renderer

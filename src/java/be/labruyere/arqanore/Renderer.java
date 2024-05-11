@@ -13,10 +13,6 @@ public class Renderer {
         Arqanore.init();
     }
 
-    public static int totalParagraphRows(Font font, String text, Vector2 scale, float width) {
-        return _totalParagraphRows(font.address, text, scale, width);
-    }
-
     public static Matrix4 generateModelMatrix(Vector3 pos, Quaternion rot, Vector3 scl) {
         return _generateModelMatrix(pos, rot, scl);
     }
@@ -100,21 +96,6 @@ public class Renderer {
         renderText(window, font, text, position, scale, color);
     }
 
-    public static void renderParagraph(Window window, Font font, String text, Vector2 position, Vector2 scale, Color color, int spacing, float maxWidth, int maxLines) throws ArqanoreException {
-        var winPtr = window.address;
-        var fontPtr = font.address;
-
-        _renderParagraph(winPtr, fontPtr, text, position, scale, color, spacing, maxWidth, maxLines);
-    }
-
-    public static void renderParagraph(Window window, Font font, String text, float x, float y, float scaleX, float scaleY, int r, int g, int b, int a, int spacing, float maxWidth, int maxLines) throws ArqanoreException {
-        var position = new Vector2(x, y);
-        var color = new Color(r, g, b, a);
-        var scale = new Vector2(scaleX, scaleY);
-
-        renderParagraph(window, font, text, position, scale, color, spacing, maxWidth, maxLines);
-    }
-
     /**
      * Renders a polygon on the screen
      *
@@ -167,8 +148,6 @@ public class Renderer {
         renderModel(window, model, pos, rot, scl, frame);
     }
 
-    private static native int _totalParagraphRows(long font, String text, Vector2 scale, float width);
-
     private static native Matrix4 _generateModelMatrix(Vector3 pos, Quaternion rot, Vector3 scl);
 
     private static native Matrix4 _generateViewMatrix(long camera);
@@ -180,8 +159,6 @@ public class Renderer {
     private static native void _switchShader(long shader);
 
     private static native void _renderText(long window, long font, String text, Vector2 position, Vector2 scale, Color color);
-
-    private static native void _renderParagraph(long window, long font, String text, Vector2 position, Vector2 scale, Color color, int spacing, float maxWidth, int maxLines);
 
     private static native void _renderPolygon(long window, long polygon, long texture, Vector2 position, Vector2 scale, Vector2 origin, Vector2 offset, float angle, boolean flipHor, boolean flipVert, Color color);
 

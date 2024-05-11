@@ -6,13 +6,6 @@
 #include "arqanore/exceptions.h"
 #include "arq_utils.h"
 
-jint Java_be_labruyere_arqanore_Renderer__1totalParagraphRows(JNIEnv *env, jclass cls, jlong font, jstring text, jobject obj_scale, jfloat width) {
-    auto ptr = (arqanore::Font *) font;
-    auto scale = convert_vector2(env, obj_scale);
-
-    return arqanore::Renderer::total_paragraph_rows(ptr, convert_java_string(env, text), scale, width);
-}
-
 jobject Java_be_labruyere_arqanore_Renderer__1generateModelMatrix(JNIEnv *env, jclass cls, jobject obj_pos, jobject obj_rot, jobject obj_scl) {
     auto pos = convert_vector3(env, obj_pos);
     auto rot = convert_quaternion(env, obj_rot);
@@ -65,21 +58,7 @@ void Java_be_labruyere_arqanore_Renderer__1renderText(JNIEnv *env, jclass cls, j
     auto scale = convert_vector2(env, obj_scale);
 
     try {
-        arqanore::Renderer::render_text(ptr_window, ptr_font, convert_java_string(env, text), pos, scale, color);
-    } catch (arqanore::ArqanoreException &ex) {
-        throw_java_exception(env, ex.what());
-    }
-}
-
-void Java_be_labruyere_arqanore_Renderer__1renderParagraph(JNIEnv *env, jclass cls, jlong window, jlong font, jstring text, jobject obj_pos, jobject obj_scale, jobject obj_color, jint spacing, jfloat max_width, jint max_lines) {
-    auto ptr_window = (arqanore::Window *) window;
-    auto ptr_font = (arqanore::Font *) font;
-    auto pos = convert_vector2(env, obj_pos);
-    auto color = convert_color(env, obj_color);
-    auto scale = convert_vector2(env, obj_scale);
-
-    try {
-        arqanore::Renderer::render_paragraph(ptr_window, ptr_font, convert_java_string(env, text), pos, scale, color, spacing, max_width, max_lines);
+        arqanore::Renderer::render_text(ptr_window, ptr_font, convert_java_u16string(env, text), pos, scale, color);
     } catch (arqanore::ArqanoreException &ex) {
         throw_java_exception(env, ex.what());
     }

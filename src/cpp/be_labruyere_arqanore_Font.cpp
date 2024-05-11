@@ -19,5 +19,5 @@ void Java_be_labruyere_arqanore_Font__1destroy(JNIEnv *env, jobject sender, jlon
 
 jfloat Java_be_labruyere_arqanore_Font__1measure(JNIEnv *env, jobject sender, jlong font, jstring text, jfloat scale) {
     auto *ptr = (arqanore::Font *) font;
-    return ptr->measure(convert_java_string(env, text), scale);
+    return ptr->measure(convert_java_u16string(env, text), scale);
 }
