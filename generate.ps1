@@ -2,7 +2,7 @@ $JAVAC="$env:JAVA_HOME/bin/javac"
 
 # HELPER METHODS
 function GetFullPath([string] $path) {
-    return [System.IO.Path]::GetFullPath($path)
+    return [System.IO.Path]::GetFullPath("$pwd" + "/" + $path)
 }
 
 function GetFilesFromFolder([string] $path, [string] $pattern) {
@@ -10,13 +10,25 @@ function GetFilesFromFolder([string] $path, [string] $pattern) {
 }
 
 function GetJavaSourceString() {
-    $files = GetFilesFromFolder "src/java" "*.java"
     $result = ""
+	
+	if ($IsWindows) {
+		$files = GetFilesFromFolder "$pwd\src\java" "*.java"
     
-    foreach ($file in $files) {
-        $file = $file.replace("src/java/", "")
-        $result += "$file "
-    }
+		foreach ($file in $files) {
+			$file = $file.replace("$pwd\src\java\", "")
+			$result += "$file "
+		}
+	}
+	
+	if ($IsLinux) {
+		$files = GetFilesFromFolder "$pwd/src/java" "*.java"
+    
+		foreach ($file in $files) {
+			$file = $file.replace("$pwd/src/java/", "")
+			$result += "$file "
+		}
+	}
     
     return $result
 }
@@ -29,21 +41,18 @@ function Generate() {
     Write-Host "Generating header files"
     
     try {
-        Set-Location "src/java"
+        Set-Location "$cwd/src/java"
         Invoke-Expression "javac -h ../cpp $src"                
         Set-Location $cwd
     } catch {
         Write-Host $_
         Exit 1
     }
-    
-    #javac -h ../cpp/ `find . -type f -name '*.java'`
-    #rm `find . -type f -name '*.class'`
 }
 
 function Cleanup() {
     $cwd = GetFullPath "."
-    $files = GetFilesFromFolder "src/java" "*.class"
+    $files = GetFilesFromFolder "$cwd/src/java" "*.class"
     
     Write-Host "Cleanup"
     
