@@ -29,7 +29,7 @@ function GetJavaSourceString() {
 		$files = GetFilesFromFolder "$pwd/src/java" "*.java"
     
 		foreach ($file in $files) {
-			$file = $file.replace("$pwd/src/java", "")
+			$file = $file.replace("$pwd/src/java/", "")
 			$result += "$file "
 		}
 	}
