@@ -2,9 +2,11 @@ $JAVAC="$env:JAVA_HOME/bin/javac"
 $JAR="$env:JAVA_HOME/bin/jar"
 $JAVADOC="$env:JAVA_HOME/bin/javadoc"
 
+$ErrorActionPreference = "Stop"
+
 # HELPER METHODS
 function GetFullPath([string] $path) {
-    return [System.IO.Path]::GetFullPath($path)
+    return [System.IO.Path]::GetFullPath("$pwd" + "/" + $path)
 }
 
 function GetFilesFromFolder([string] $path, [string] $pattern) {
@@ -12,13 +14,25 @@ function GetFilesFromFolder([string] $path, [string] $pattern) {
 }
 
 function GetJavaSourceString() {
-    $files = GetFilesFromFolder "src/java" "*.java"
     $result = ""
+	
+	if ($IsWindows) {
+		$files = GetFilesFromFolder "$pwd\src\java" "*.java"
     
-    foreach ($file in $files) {
-        $file = $file.replace("src/java/", "")
-        $result += "$file "
-    }
+		foreach ($file in $files) {
+			$file = $file.replace("$pwd\src\java\", "")
+			$result += "$file "
+		}
+	}
+	
+	if ($IsLinux) {
+		$files = GetFilesFromFolder "$pwd/src/java" "*.java"
+    
+		foreach ($file in $files) {
+			$file = $file.replace("$pwd/src/java", "")
+			$result += "$file "
+		}
+	}
     
     return $result
 }
@@ -44,13 +58,11 @@ function InitBuild() {
 }
 
 function InitCmake() {
-    $out = GetFullPath "out"
     $cwd = GetFullPath "."
 
-    Write-Host "Generating cmake files"
-
     try {
-        Set-Location "src/cpp/build"
+		Write-Host "Generating cmake files"
+        Set-Location "$cwd/src/cpp/build"
         
         if ($IsWindows) {
             Invoke-Expression 'cmake -S .. -G "MinGW Makefiles" > $null'
@@ -68,21 +80,19 @@ function InitCmake() {
 }
 
 function BuildNative() {
-    $out = GetFullPath "out/lib"
     $cwd = GetFullPath "."
-    
-    Write-Host "Building native library"
-    
+       
     try {
-        Set-Location "src/cpp/build"
+		Write-Host "Building native library"
+        Set-Location "$cwd/src/cpp/build"
         Invoke-Expression 'cmake --build . > $null'
         
         if ($IsWindows) {
-            Copy-Item -Path *.dll -Destination $out > $null
+            Copy-Item -Path *.dll -Destination "$cwd/out/lib" > $null
         }
         
         if ($IsLinux) {
-            Copy-Item -Path *.so -Destination $out > $null
+            Copy-Item -Path *.so -Destination "$cwd/out/lib" > $null
         }
         
         Set-Location $cwd
@@ -93,15 +103,13 @@ function BuildNative() {
 }
 
 function BuildLibrary() {
-    $out = GetFullPath "out"
     $cwd = GetFullPath "."
     $src = GetJavaSourceString
-            
-    Write-Host "Building java library"
-    
+	               
     try {
-        Set-Location "src/java"
-        Invoke-Expression "$JAVAC -d $out -g $src > '$null'"
+		Write-Host "Building java library"
+        Set-Location "$cwd/src/java"
+        Invoke-Expression "$JAVAC -d $cwd/out -g $src > '$null'"
         Set-Location $cwd
     } catch {
         Write-Host $_
@@ -110,15 +118,13 @@ function BuildLibrary() {
 }
 
 function BuildDocs() {
-    $out = GetFullPath "out/doc"
     $cwd = GetFullPath "."
     $src = GetJavaSourceString
-            
-    Write-Host "Building java docs"
-    
+                
     try {
-        Set-Location "src/java"
-        Invoke-Expression "$JAVADOC -d $out $src 2> '$null'"
+		Write-Host "Building java docs"
+        Set-Location "$cwd/src/java"
+        Invoke-Expression "$JAVADOC -d $cwd/out/doc $src 2> '$null'"
         Set-Location $cwd
     } catch {
         Write-Host $_
@@ -127,12 +133,9 @@ function BuildDocs() {
 }
 
 function BuildJar() {
-    $out = GetFullPath "out"
     $cwd = GetFullPath "."
-    
-    Write-Host "Building jar"
-    
-    if (Test-Path "lib") {
+        
+    if (Test-Path "$cwd/lib") {
         if ($IsWindows) {
             Copy-Item -Path "lib/*.dll" -Destination $out > $null
         }
@@ -143,7 +146,8 @@ function BuildJar() {
     }
     
     try {
-        Set-Location $out
+		Write-Host "Building jar"
+        Set-Location $cwd/out
         Invoke-Expression "$JAR -cf jarqanore.jar ./be/ ./lib/"
         Set-Location $cwd
     } catch {
@@ -153,13 +157,12 @@ function BuildJar() {
 }
 
 function Cleanup() {
-    $out = GetFullPath "out"
     $cwd = GetFullPath "."
     
     Write-Host "Cleanup"
     
-    RemoveFolderIfExists "$out/lib"
-    RemoveFolderIfExists "$out/be"
+    RemoveFolderIfExists "$cwd/out/lib"
+    RemoveFolderIfExists "$cwd/out/be"
 }
 
 # EXECUTION
