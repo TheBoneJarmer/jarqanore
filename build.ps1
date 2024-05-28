@@ -136,12 +136,14 @@ function BuildJar() {
     $cwd = GetFullPath "."
         
     if (Test-Path "$cwd/lib") {
+		Write-Host "Copying dynamic libraries"
+		
         if ($IsWindows) {
-            Copy-Item -Path "lib/*.dll" -Destination $out > $null
+            Copy-Item -Path "lib/*.dll" -Destination $cwd/out > $null
         }
         
         if ($IsLinux) {        
-           Copy-Item -Path "lib/*.so" -Destination $out > $null
+           Copy-Item -Path "lib/*.so" -Destination $cwd/out > $null
         }
     }
     
