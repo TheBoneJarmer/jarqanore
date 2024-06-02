@@ -18,7 +18,7 @@ JavaCallback *window_render3d_cb_data;
 JavaCallback *window_resize_cb_data;
 JavaCallback *window_position_cb_data;
 JavaCallback *window_char_cb_data;
-JavaCallback *window_opengl_cb_data;
+//JavaCallback *window_opengl_cb_data;
 
 void handle_java_callback(arqanore::Window *window, JavaCallback *cb) {
     if (cb == nullptr) {
@@ -90,7 +90,7 @@ void window_update_cb(arqanore::Window *window, double at) {
     }
 }
 
-void window_opengl_cb(arqanore::Window *window, std::string type, std::string severity, std::string message) {
+/*void window_opengl_cb(arqanore::Window *window, std::string type, std::string severity, std::string message) {
     auto cb = window_opengl_cb_data;
 
     if (cb == nullptr || cb->is_empty()) {
@@ -112,7 +112,7 @@ void window_opengl_cb(arqanore::Window *window, std::string type, std::string se
         env->ExceptionClear();
         window->close();
     }
-}
+}*/
 
 void window_render2d_cb(arqanore::Window *window) {
     handle_java_callback(window, window_render2d_cb_data);
@@ -323,9 +323,9 @@ void Java_be_labruyere_arqanore_Window__1setCharCallback(JNIEnv *env, jobject cl
     window_char_cb_data = get_java_callback(env, class_name, method_name, "(I)V");
 }
 
-void Java_be_labruyere_arqanore_Window__1setOpenGLCallback(JNIEnv *env, jobject cls, jlong window, jstring class_name, jstring method_name) {
+/*void Java_be_labruyere_arqanore_Window__1setOpenGLCallback(JNIEnv *env, jobject cls, jlong window, jstring class_name, jstring method_name) {
     window_opengl_cb_data = get_java_callback(env, class_name, method_name, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
-}
+}*/
 
 jlong Java_be_labruyere_arqanore_Window__1create(JNIEnv *env, jobject cls, jint width, jint height, jstring title) {
     auto winWidth = (int) width;
@@ -342,7 +342,7 @@ jlong Java_be_labruyere_arqanore_Window__1create(JNIEnv *env, jobject cls, jint 
     ptr->on_resize(window_resize_cb);
     ptr->on_position(window_position_cb);
     ptr->on_char(window_char_cb);
-    ptr->on_opengl(window_opengl_cb);
+    //ptr->on_opengl(window_opengl_cb);
 
     return (intptr_t) ptr;
 }
