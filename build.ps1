@@ -53,7 +53,6 @@ function InitBuild() {
     RemoveFolderIfExists "src/cpp/build"
     
     CreateFolder "out"
-    CreateFolder "out/lib"
     CreateFolder "src/cpp/build"
 }
 
@@ -88,11 +87,11 @@ function BuildNative() {
         Invoke-Expression 'cmake --build . > $null'
         
         if ($IsWindows) {
-            Copy-Item -Path *.dll -Destination "$cwd/out/lib" > $null
+            Copy-Item -Path *.dll -Destination "$cwd/out" > $null
         }
         
         if ($IsLinux) {
-            Copy-Item -Path *.so -Destination "$cwd/out/lib" > $null
+            Copy-Item -Path *.so -Destination "$cwd/out" > $null
         }
         
         Set-Location $cwd
@@ -139,18 +138,18 @@ function BuildJar() {
 		Write-Host "Copying dynamic libraries"
 		
         if ($IsWindows) {
-            Copy-Item -Path "lib/*.dll" -Destination $cwd/out/lib > $null
+            Copy-Item -Path "lib/*.dll" -Destination $cwd/out > $null
         }
         
         if ($IsLinux) {        
-           Copy-Item -Path "lib/*.so" -Destination $cwd/out/lib > $null
+           Copy-Item -Path "lib/*.so" -Destination $cwd/out > $null
         }
     }
     
     try {
 		Write-Host "Building jar"
         Set-Location $cwd/out
-        Invoke-Expression "$JAR -cf jarqanore.jar ./be/ ./lib/"
+        Invoke-Expression "$JAR -cf jarqanore.jar ./be/"
         Set-Location $cwd
     } catch {
         Write-Host $_
@@ -162,8 +161,7 @@ function Cleanup() {
     $cwd = GetFullPath "."
     
     Write-Host "Cleanup"
-    
-    RemoveFolderIfExists "$cwd/out/lib"
+
     RemoveFolderIfExists "$cwd/out/be"
 }
 

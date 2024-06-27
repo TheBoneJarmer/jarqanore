@@ -31,7 +31,7 @@ then
 	echo "$CMAKE_BUILD_OUTPUT"
 	exit $CMAKE_BUILD_OUTPUT_EXITCODE
 fi
-cp *.so ../../../out/lib
+cp *.so ../../../out
 cd ../../..
 
 echo "Compiling java library"
@@ -59,8 +59,7 @@ cd ../..
 
 echo "Generating jar"
 cd out
-cp /usr/local/lib/*.so* ./lib/
-JAR_OUTPUT=$($JAR -cf jarqanore.jar ./be/ ./lib/ 2>&1)
+JAR_OUTPUT=$($JAR -cf jarqanore.jar ./be/ 2>&1)
 JAR_OUTPUT_EXITCODE=$?
 
 if [[ JAR_OUTPUT_EXITCODE -ne 0 ]];

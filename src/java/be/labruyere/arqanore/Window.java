@@ -227,6 +227,10 @@ public class Window extends Pointer {
         _hide(address);
     }
 
+    public void restore() {
+        _restore(address);
+    }
+
     /**
      * Sets the onOpen callback
      *
@@ -326,17 +330,6 @@ public class Window extends Pointer {
         _setCharCallback(address, className, methodName);
     }
 
-    /**
-     * Sets the onOpenGL callback
-     *
-     * @param className  The fully qualified name of the class
-     * @param methodName The method name from the class
-     * @throws ArqanoreException If callback did not register correctly
-     */
-    /*public void onOpenGL(String className, String methodName) throws ArqanoreException {
-        _setOpenGLCallback(address, className, methodName);
-    }*/
-
     private native int _getWidth(long window);
 
     private native int _getHeight(long window);
@@ -394,8 +387,6 @@ public class Window extends Pointer {
     private native void _setPositionCallback(long window, String className, String methodName);
 
     private native void _setCharCallback(long window, String className, String methodName);
-
-    //private native void _setOpenGLCallback(long window, String className, String methodName);
 
     private native long _create(int width, int height, String title);
 

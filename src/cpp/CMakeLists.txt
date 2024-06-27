@@ -75,7 +75,7 @@ endif()
 if (UNIX)	
 	target_include_directories(jarqanore PRIVATE ${JAVA_HOME}/include)
 	target_include_directories(jarqanore PRIVATE ${JAVA_HOME}/include/linux)
-	target_link_libraries(jarqanore PRIVATE arqanore -Wl,-rpath='$ORIGIN:$ORIGIN/lib')
+	target_link_libraries(jarqanore PRIVATE arqanore glfw freetype soloudw -Wl,-rpath='$ORIGIN:$ORIGIN/lib')
 endif (UNIX)
 
 if (WIN32)
