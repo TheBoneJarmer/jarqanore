@@ -10,6 +10,7 @@
 
 /* CALLBACKS */
 JavaCallback *window_open_cb_data;
+JavaCallback *window_input_cb_data;
 JavaCallback *window_close_cb_data;
 JavaCallback *window_tick_cb_data;
 JavaCallback *window_update_cb_data;
@@ -18,7 +19,6 @@ JavaCallback *window_render3d_cb_data;
 JavaCallback *window_resize_cb_data;
 JavaCallback *window_position_cb_data;
 JavaCallback *window_char_cb_data;
-//JavaCallback *window_opengl_cb_data;
 
 void handle_java_callback(arqanore::Window *window, JavaCallback *cb) {
     if (cb == nullptr) {
@@ -182,6 +182,10 @@ void window_char_cb(arqanore::Window *window, unsigned int codePoint) {
     }
 }
 
+void window_input_cb(arqanore::Window* window) {
+    handle_java_callback(window, window_input_cb_data);
+}
+
 /* WRAPPER METHODS */
 jint Java_be_labruyere_arqanore_Window__1getWidth(JNIEnv *env, jobject cls, jlong window) {
     auto ptr = (arqanore::Window *) window;
@@ -291,6 +295,10 @@ void Java_be_labruyere_arqanore_Window__1setOpenCallback(JNIEnv *env, jobject cl
     window_open_cb_data = get_java_callback(env, class_name, method_name, "()V");
 }
 
+void Java_be_labruyere_arqanore_Window__1setInputCallback(JNIEnv *env, jobject cls, jlong window, jstring class_name, jstring method_name) {
+    window_input_cb_data = get_java_callback(env, class_name, method_name, "()V");
+}
+
 void Java_be_labruyere_arqanore_Window__1setCloseCallback(JNIEnv *env, jobject cls, jlong window, jstring class_name, jstring method_name) {
     window_close_cb_data = get_java_callback(env, class_name, method_name, "()V");
 }
@@ -342,7 +350,7 @@ jlong Java_be_labruyere_arqanore_Window__1create(JNIEnv *env, jobject cls, jint 
     ptr->on_resize(window_resize_cb);
     ptr->on_position(window_position_cb);
     ptr->on_char(window_char_cb);
-    //ptr->on_opengl(window_opengl_cb);
+    ptr->on_input(window_input_cb);
 
     return (intptr_t) ptr;
 }
@@ -359,6 +367,7 @@ void Java_be_labruyere_arqanore_Window__1destroy(JNIEnv *env, jobject cls, jlong
     delete window_resize_cb_data;
     delete window_position_cb_data;
     delete window_char_cb_data;
+    delete window_input_cb_data;
 }
 
 void Java_be_labruyere_arqanore_Window__1open(JNIEnv *env, jobject cls, jlong window, jboolean fullscreen, jboolean maximized, jboolean resizable) {

@@ -242,6 +242,10 @@ public class Window extends Pointer {
         _setOpenCallback(address, className, methodName);
     }
 
+    public void onInput(String className, String methodName) throws ArqanoreException {
+        _setInputCallback(address, className, methodName);
+    }
+
     /**
      * Sets the onClose callback
      *
@@ -371,6 +375,8 @@ public class Window extends Pointer {
     private native void _setClearColor(long window, Color color);
 
     private native void _setOpenCallback(long window, String className, String methodName);
+
+    private native void _setInputCallback(long window, String className, String methodName);
 
     private native void _setCloseCallback(long window, String className, String methodName);
 
