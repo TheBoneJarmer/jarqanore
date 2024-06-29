@@ -242,10 +242,6 @@ public class Window extends Pointer {
         _setOpenCallback(address, className, methodName);
     }
 
-    public void onInput(String className, String methodName) throws ArqanoreException {
-        _setInputCallback(address, className, methodName);
-    }
-
     /**
      * Sets the onClose callback
      *
@@ -255,17 +251,6 @@ public class Window extends Pointer {
      */
     public void onClose(String className, String methodName) throws ArqanoreException {
         _setCloseCallback(address, className, methodName);
-    }
-
-    /**
-     * Sets the onTick callback
-     *
-     * @param className  The fully qualified name of the class
-     * @param methodName The method name from the class
-     * @throws ArqanoreException If callback did not register correctly
-     */
-    public void onTick(String className, String methodName) throws ArqanoreException {
-        _setTickCallback(address, className, methodName);
     }
 
     /**
@@ -376,11 +361,7 @@ public class Window extends Pointer {
 
     private native void _setOpenCallback(long window, String className, String methodName);
 
-    private native void _setInputCallback(long window, String className, String methodName);
-
     private native void _setCloseCallback(long window, String className, String methodName);
-
-    private native void _setTickCallback(long window, String className, String methodName);
 
     private native void _setUpdateCallback(long window, String className, String methodName);
 

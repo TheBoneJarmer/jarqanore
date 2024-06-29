@@ -177,26 +177,10 @@ JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1setOpenCallback
 
 /*
  * Class:     be_labruyere_arqanore_Window
- * Method:    _setInputCallback
- * Signature: (JLjava/lang/String;Ljava/lang/String;)V
- */
-JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1setInputCallback
-  (JNIEnv *, jobject, jlong, jstring, jstring);
-
-/*
- * Class:     be_labruyere_arqanore_Window
  * Method:    _setCloseCallback
  * Signature: (JLjava/lang/String;Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1setCloseCallback
-  (JNIEnv *, jobject, jlong, jstring, jstring);
-
-/*
- * Class:     be_labruyere_arqanore_Window
- * Method:    _setTickCallback
- * Signature: (JLjava/lang/String;Ljava/lang/String;)V
- */
-JNIEXPORT void JNICALL Java_be_labruyere_arqanore_Window__1setTickCallback
   (JNIEnv *, jobject, jlong, jstring, jstring);
 
 /*
